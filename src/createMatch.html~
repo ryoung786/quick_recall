@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <form action="/match/create" method="post">
+      <div>
+	Team 1:
+	<textarea name="team1" rows="1" cols="60" />
+	Team 2:
+	<textarea name="team2" rows="1" cols="60" />
+      </div>
+      <div>
+	Players (Team 1):
+	<textarea name="players1" rows="1" cols="60" />
+	Players (Team 2):
+	<textarea name="players2" rows="1" cols="60" />
+      </div>
+      <input type="submit" value="Add Questions" />
+    </form>
+  </body>
+</html>

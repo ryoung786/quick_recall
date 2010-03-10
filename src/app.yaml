@@ -1,0 +1,12 @@
+application: quickrecall
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /[Qq]uestions/.*
+  script: createQuestion.py
+- url: /[Mm]atch/.*
+  script: createMatch.py
+- url: /.*
+  script: asklogin.py

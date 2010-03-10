@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <div id="score">
+      {{ team1.name }}: {{ team1.score }}
+      {{ team2.name }}: {{ team2.score }}
+    </div>
+
+    <form action="/match/addQuestion" method="post">
+      <div>Question:
+	<textarea name="question" rows="3" cols="60"></textarea></div>
+      <div>Answer:
+	<textarea name="answer" rows="3" cols="60"></textarea></div>
+      <div>Tags:
+	<textarea name="tags" rows="1" cols="60"></textarea></div>
+      <div>Correct:
+	<textarea name="correct" rows="1" cols="60"></textarea></div>
+      <div>Incorrect:
+	<textarea name="incorrect" rows="1" cols="60"></textarea></div>
+      <div><input type="submit" value="Add another question"></div>
+    </form>
+    <a href="/">End Match</a>
+  </body>
+</html>

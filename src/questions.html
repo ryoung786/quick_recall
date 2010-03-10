@@ -1,0 +1,16 @@
+<html>
+  <body>
+    {% for question in questions %}
+      <div>
+      <p class="question">{{ question.question }}</p>
+      <p class="answer">{{ question.answer.answer }}</p>
+      <ul class="tags">
+      {% for taglink in question.tags %}
+        <li class="tag">{{ taglink.tag.tag }}</li>
+      {% endfor %}
+      </ul>
+      </div>
+    {% endfor %}
+
+  </body>
+</html>
