@@ -1,6 +1,6 @@
 from Model import Model, DB, BaseFinder
-from Question import Question
-from Player import Player
+from Question import QuestionFinder
+from Player import PlayerFinder
 
 class Match(Model):
     '''
@@ -61,9 +61,7 @@ class Match(Model):
         return [Team.fromJSON(team, populate_players) for team in self.teams]
 
     def Questions(self, limit=0, skip=0):
-        db = self.getDB()
-        questions = db.questions.find({"_id": {"$in": self.questions}}).skip(skip).limit(limit)
-        return [Question.fromJSON(q) for q in questions]
+        return QuestionFinder().findMany(self.questions)
 
 
 
@@ -75,9 +73,7 @@ class Team(DB):
         self.score = score
 
     def Players(self, limit=0, skip=0):
-        db = self.getDB()
-        players = db.players.find({"_id": {"$in": self.players}}).skip(skip).limit(limit)
-        return [Player.fromJSON(p) for p in players]
+        return PlayerFinder().findMany(self.players)
 
     @staticmethod
     def fromJSON(json, populate_players=False):

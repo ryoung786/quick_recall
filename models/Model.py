@@ -34,10 +34,7 @@ class BaseFinder(DB):
 
     def findRaw(self, id):
         db = self.getDB()
-        if isinstance(id, ObjectId):
-            return db[self.collection].find_one({"_id": id})
-        else:
-            return db[self.collection].find_one({"_id": ObjectId(id)})
+        return db[self.collection].find_one({"_id": ObjectId(id)})
 
     def find(self, id):
         json = self.findRaw(id)
@@ -46,7 +43,7 @@ class BaseFinder(DB):
     def findManyRaw(self, ids, limit=0, skip=0):
         db = self.getDB()
         # ensures ids are all ObjectIds, even if they passed in an array of strings
-        ids = [id if isinstance(id, ObjectId) else ObjectId(id) for id in ids]
+        ids = [ObjectId(id) for id in ids]
         return db[self.collection].find({"_id": {"$in": ids}}).skip(skip).limit(limit)
 
     def findMany(self, ids, limit=0, skip=0):

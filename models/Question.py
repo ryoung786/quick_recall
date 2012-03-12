@@ -1,4 +1,6 @@
 from Model import Model, BaseFinder
+from Player import PlayerFinder
+from pymongo.objectid import ObjectId
 
 class Question(Model):
     '''
@@ -14,11 +16,10 @@ class Question(Model):
     collection = 'questions'
 
     def __init__(self, player_id, correct, tags=[], _id=None):
-        self.player_id = player_id # ObjectId
+        self.player_id = ObjectId(player_id)
         self.correct = correct
         self.tags = tags
         self._id = _id
-        self.player = None
 
     @staticmethod
     def fromJSON(json):
@@ -29,10 +30,7 @@ class Question(Model):
             json.get('_id'))
 
     def Player(self):
-        if self.player:
-            return self.player
-        db = self.getDB()
-        return db.players.find_one({"_id": self.player_id})
+        return PlayerFinder().find(self.player_id)
 
 class QuestionFinder(BaseFinder):
     collection = 'questions'

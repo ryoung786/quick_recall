@@ -1,4 +1,3 @@
-
 ## This is my makeshift ORM that populates my player foreign keys.
 ## I should learn how to do this for real before this project goes too far
 def populateMatch(match, db):
