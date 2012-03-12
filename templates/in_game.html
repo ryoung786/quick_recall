@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Game</title>
+        <link rel="stylesheet" href="/static/css/in_game.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <div class="content">
+            {% for team in teams %}
+                <div class="team">
+                    {% for player in team.players %}
+                        <div class="player" id="{{ player._id }}">
+                            <div class="avatar">
+                                <!-- <img src="http://www.gravatar.com/avatar/{{ player._id | string }}?d=identicon&s=50" -->
+                                <img src=""
+                                     alt="{{ player.first }} {{ player.last }} avatar" />
+                                <p class="name">{{ player.first }} {{ player.last }}</p>
+                            </div>
+                            <div class="question">
+                                <ul class="tags">
+                                    <li class="selected">math</li>
+                                    <li>history</li>
+                                    <li class="selected">geometry</li>
+                                </ul>
+                                <form action="questions" method="POST">
+                                    {# TODO: csrf #}
+                                    <input type="hidden" name="player_id" value="{{ player._id }}">
+                                    <input type="submit" value="Incorrect" name="incorrect">
+                                    <input type="submit" value="Correct" name="correct">
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- libraries -->
+        <script type="text/javascript" src="/static/js/lib/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/lib/underscore-min.js"></script>
+        <script type="text/javascript" src="/static/js/in_game.js"></script>
+    </body>
+</html>

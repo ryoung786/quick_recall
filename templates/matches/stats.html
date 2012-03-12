@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Match Stats</title>
+        <link rel="stylesheet" href="/static/css/in_game.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <div class="content">
+            <h1>Match Stats</h1>
+            {% for team in match['teams'] %}
+                <div class="team">
+                    <p class="name">{{ team.name }}</p>
+                    <p class="score">{{ team.score }}</p>
+                </div>
+            {% endfor %}
+
+            <div class="stats">
+                <p><span>Number of questions:</span>{{ match['questions'] | count }}
+            </div>
+        </div>
+
+        <!-- libraries -->
+        <script type="text/javascript" src="/static/js/lib/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/lib/underscore-min.js"></script>
+    </body>
+</html>
