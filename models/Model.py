@@ -1,6 +1,5 @@
 from pymongo import Connection
 from pymongo.objectid import ObjectId
-
 from config import config
 
 class DB(object):

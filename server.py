@@ -2,9 +2,10 @@ from flask import Flask, request, render_template, redirect, url_for
 from pymongo import Connection
 from pymongo.objectid import ObjectId
 from util import *
+from config import config as cfg
 
 app = Flask(__name__)
-conn = Connection()
+conn = Connection(cfg['DB']['host'], cfg['DB']['port'])
 db = conn.foo
 
 @app.route('/matches/', methods=['POST'])
@@ -65,4 +66,7 @@ def helloWorld():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    if cfg['production']:
+        app.run(host='0.0.0.0', port=80, debug=False)
+    else:
+        app.run(debug=True)
