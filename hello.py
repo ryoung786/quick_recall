@@ -21,6 +21,12 @@ def createMatch():
     # TODO figure it out
     return redirect(url_for('matches', match_id=str(match._id)))
 
+@app.route('/players/', methods=['POST'])
+def createPlayer():
+    player = Player(request.form['first'], request.form['last'])
+    player_id = player.save()
+    return 'Created'
+
 @app.route('/matches/<match_id>/')
 def match(match_id):
     match = db.matches.find_one({"_id": ObjectId(match_id)})

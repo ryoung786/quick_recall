@@ -1,10 +1,14 @@
 from pymongo import Connection
 from pymongo.objectid import ObjectId
 
+from config import config
+
 class DB(object):
     '''Provides a connection to our mongo db'''
     def getDB(self):
-        return Connection().foo
+        host = config['DB']['host']
+        port = config['DB']['port']
+        return Connection(host=host, port=port).foo
 
 class Model(DB):
     '''A base model defining methods all db accessors need'''
