@@ -41,10 +41,10 @@ class Match(Model):
             json.get('questions', []),
             json.get('_id'))
 
-    def addPlayer(team, player):
+    def addPlayer(self, team, player):
         pass
 
-    def addQuestion(question_or_id):
+    def addQuestion(self, question_or_id):
         '''
         Takes a Model.Question or ObjectId, adds it to its questions,
         and saves the match to the database
@@ -64,6 +64,8 @@ class Match(Model):
         db = self.getDB()
         questions = db.questions.find({"_id": {"$in": self.questions}}).skip(skip).limit(limit)
         return [Question.fromJSON(q) for q in questions]
+
+
 
 class Team(DB):
 
@@ -86,6 +88,8 @@ class Team(DB):
         if populate_players:
             team.players = team.Players()
         return team
+
+
 
 class MatchFinder(BaseFinder):
     collection = 'matches'
