@@ -32,9 +32,13 @@ class Model(DB):
 class BaseFinder(DB):
     '''Find everything by _id'''
 
-    def find(self, id):
+    def findRaw(self, id):
         db = self.getDB()
         if isinstance(id, ObjectId):
             return db[self.collection].find_one({"_id": id})
         else:
             return db[self.collection].find_one({"_id": ObjectId(id)})
+
+    def find(self, id):
+        json = self.findRaw(id)
+        return self.toModel(json)

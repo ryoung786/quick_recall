@@ -26,3 +26,6 @@ class Player(Model):
 
 class PlayerFinder(BaseFinder):
     collection = 'players'
+
+    def toModel(self, json):
+        return Player.fromJSON(json)

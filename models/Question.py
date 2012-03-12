@@ -36,3 +36,6 @@ class Question(Model):
 
 class QuestionFinder(BaseFinder):
     collection = 'questions'
+
+    def toModel(self, json):
+        return Question.fromJSON(json)

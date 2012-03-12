@@ -57,8 +57,8 @@ class Match(Model):
         self.save()
         return self
 
-    def Teams(self, populatePlayers=False):
-        return [Team.fromJSON(team, populatePlayers) for team in self.teams]
+    def Teams(self, populate_players=False):
+        return [Team.fromJSON(team, populate_players) for team in self.teams]
 
     def Questions(self, limit=0, skip=0):
         db = self.getDB()
@@ -78,14 +78,17 @@ class Team(DB):
         return [Player.fromJSON(p) for p in players]
 
     @staticmethod
-    def fromJSON(json, populatePlayers=False):
+    def fromJSON(json, populate_players=False):
         team = Team(
             json['name'],
             json.get('players', []),
             json.get('score', 0))
-        if populatePlayers:
-            team.players = team.Players
+        if populate_players:
+            team.players = team.Players()
         return team
 
 class MatchFinder(BaseFinder):
     collection = 'matches'
+
+    def toModel(self, json):
+        return Match.fromJSON(json)

@@ -3,6 +3,7 @@ from pymongo import Connection
 from pymongo.objectid import ObjectId
 from util import *
 from config import config as cfg
+from models import Match, MatchFinder
 
 app = Flask(__name__)
 conn = Connection(cfg['DB']['host'], cfg['DB']['port'])
@@ -30,10 +31,10 @@ def createPlayer():
 
 @app.route('/matches/<match_id>/')
 def match(match_id):
-    match = db.matches.find_one({"_id": ObjectId(match_id)})
-    populateMatch(match, db)
-    return render_template("in_game.html",
-                           teams=match['teams'])
+    match = MatchFinder().find(match_id)
+    return render_template(
+        "in_game.html",
+        teams=match.Teams(populate_players=True))
 
 @app.route('/matches/<match_id>/questions', methods=['POST'])
 def createQuestion(match_id):
