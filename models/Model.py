@@ -42,3 +42,13 @@ class BaseFinder(DB):
     def find(self, id):
         json = self.findRaw(id)
         return self.toModel(json)
+
+    def findManyRaw(self, ids, limit=0, skip=0):
+        db = self.getDB()
+        # ensures ids are all ObjectIds, even if they passed in an array of strings
+        ids = [id if isinstance(id, ObjectId) else ObjectId(id) for id in ids]
+        return db[self.collection].find({"_id": {"$in": ids}}).skip(skip).limit(limit)
+
+    def findMany(self, ids, limit=0, skip=0):
+        cursor = self.findManyRaw(ids, limit, skip)
+        return [self.toModel(json) for json in cursor]
