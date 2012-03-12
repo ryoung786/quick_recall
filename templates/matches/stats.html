@@ -6,7 +6,7 @@
     <body>
         <div class="content">
             <h1>Match Stats</h1>
-            {% for team in match['teams'] %}
+            {% for team in match.teams %}
                 <div class="team">
                     <p class="name">{{ team.name }}</p>
                     <p class="score">{{ team.score }}</p>
@@ -14,7 +14,7 @@
             {% endfor %}
 
             <div class="stats">
-                <p><span>Number of questions:</span>{{ match['questions'] | count }}
+                <p><span>Number of questions:</span>{{ match.questions | count }}
             </div>
         </div>
 

@@ -42,8 +42,7 @@ def createQuestion(match_id):
 
 @app.route('/matches/<match_id>/stats/')
 def matchStats(match_id):
-    match = db.matches.find_one({"_id": ObjectId(match_id)})
-    populateMatch(match, db)
+    match = MatchFinder().find(match_id)
     return render_template("matches/stats.html",
                            match=match)
 
