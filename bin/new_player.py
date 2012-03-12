@@ -1,22 +1,15 @@
 #! /usr/bin/python
 
 import sys
-from pymongo import Connection
-from pymongo.objectid import ObjectId
+import os
+_root_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+sys.path.insert(0, _root_dir)
 
-conn = Connection()
-db = conn.foo
+from models.Player import Player
 
-if (len(sys.argv) < 2):
+if (len(sys.argv) < 3):
     print "Usage:" + sys.argv[0] + " first_name last_name"
     sys.exit()
 
-player = {
-    "first": (sys.argv[1]).lower(),
-    }
-
-if (len(sys.argv > 2)):
-    player["second"] = (sys.argv[2]).lower()
-
-id = db.players.save(player)
-print str(id)
+player = Player(sys.argv[1], sys.argv[2])
+player.save()
