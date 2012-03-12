@@ -3,4 +3,9 @@ from Player import *
 from Question import *
 from Match import *
 
-__all__ = ["Model", "DB", "Player", "Question", "Match", "Team"]
+__all__ = [
+    "Model", "DB", "BaseFinder",
+    "Player", "PlayerFinder",
+    "Question", "QuestionFinder",
+    "Match", "MatchFinder", "Team"
+]

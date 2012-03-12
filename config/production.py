@@ -3,6 +3,7 @@ config = {
     'development': False,
 
     'DB': {
+        'name': 'foo',
         'host': 'localhost',
         'port': 27017
      },

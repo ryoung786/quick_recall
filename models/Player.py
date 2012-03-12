@@ -1,4 +1,4 @@
-from Model import Model
+from Model import Model, BaseFinder
 
 class Player(Model):
     '''
@@ -23,3 +23,6 @@ class Player(Model):
             json['first'],
             json['last'],
             json.get('_id'))
+
+class PlayerFinder(BaseFinder):
+    collection = 'players'

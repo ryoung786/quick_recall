@@ -1,4 +1,4 @@
-from Model import Model, DB
+from Model import Model, DB, BaseFinder
 from Question import Question
 from Player import Player
 
@@ -86,3 +86,6 @@ class Team(DB):
         if populatePlayers:
             team.players = team.Players
         return team
+
+class MatchFinder(BaseFinder):
+    collection = 'matches'

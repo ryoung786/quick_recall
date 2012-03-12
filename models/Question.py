@@ -1,4 +1,4 @@
-from Model import Model
+from Model import Model, BaseFinder
 
 class Question(Model):
     '''
@@ -33,3 +33,6 @@ class Question(Model):
             return self.player
         db = self.getDB()
         return db.players.find_one({"_id": self.player_id})
+
+class QuestionFinder(BaseFinder):
+    collection = 'questions'

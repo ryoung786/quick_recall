@@ -4,10 +4,12 @@ from config import config
 
 class DB(object):
     '''Provides a connection to our mongo db'''
+
     def getDB(self):
         host = config['DB']['host']
         port = config['DB']['port']
-        return Connection(host=host, port=port).foo
+        db = config['DB']['name']
+        return Connection(host=host, port=port)[db]
 
 class Model(DB):
     '''A base model defining methods all db accessors need'''
@@ -26,6 +28,9 @@ class Model(DB):
         db = self.getDB()
         self._id = db[self.collection].save(self.asJSON())
         return self._id
+
+class BaseFinder(DB):
+    '''Find everything by _id'''
 
     def find(self, id):
         db = self.getDB()
