@@ -17,6 +17,9 @@ class Player(Model):
         self.last = last
         self._id = _id
 
+    def avatar(self):
+        return "http://www.gravatar.com/avatar/%s?d=retro&s=50" % (str(self._id))
+
     @staticmethod
     def fromJSON(json):
         return Player(

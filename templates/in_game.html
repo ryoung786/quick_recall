@@ -10,8 +10,7 @@
                     {% for player in team.players %}
                         <div class="player" id="{{ player._id }}">
                             <div class="avatar">
-                                <!-- <img src="http://www.gravatar.com/avatar/{{ player._id | string }}?d=identicon&s=50" -->
-                                <img src=""
+                                <img src="{{ player.avatar() }}"
                                      alt="{{ player.first }} {{ player.last }} avatar" />
                                 <p class="name">{{ player.first }} {{ player.last }}</p>
                             </div>
