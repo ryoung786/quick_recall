@@ -19,9 +19,9 @@ class Model(DB):
         return db[self.collection]
 
     def asJSON(self):
-        json = vars(self)
+        json = vars(self).copy()
         if not self._id:
-            json.pop('_id')
+            json.pop('_id', None)
         return json
 
     def save(self):

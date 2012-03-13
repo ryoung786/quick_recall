@@ -3,7 +3,7 @@ from pymongo import Connection
 from pymongo.objectid import ObjectId
 from util import *
 from config import config as cfg
-from models import Match, MatchFinder, Question
+from models import Match, MatchFinder, Question, QuestionFinder, Answer
 
 app = Flask(__name__)
 conn = Connection(cfg['DB']['host'], cfg['DB']['port'])
@@ -30,14 +30,23 @@ def match(match_id):
 @app.route('/matches/<match_id>/questions', methods=['POST'])
 def createQuestion(match_id):
     player_id = request.form['player_id']
-    correct = 'correct' in request.form
-    tags = request.form.getlist('tags')
-    question = Question(player_id, correct, tags)
+    correct = request.form['correct'] == '1'
+    tags = request.form.getlist('tags[]')
+    answer = Answer(player_id, correct)
+    question = Question(tags, answers=[answer.asJSON()])
     question.save()
 
     match = MatchFinder().find(match_id)
-    match.addQuestion(question)
-    return redirect(url_for('match', match_id=str(match_id)))
+    match.addQuestionAndAnswer(question, answer)
+    # return redirect(url_for('match', match_id=str(match_id)))
+    return "OK " + str(question._id)
+
+@app.route('/matches/<match_id>/questions/<question_id>/answers', methods=['POST'])
+def addAnswer(match_id, question_id):
+    question = QuestionFinder().find(question_id)
+    player_id = request.form['player_id']
+    correct = 'correct' in request.form
+    question.addAnswer(Answer(player_id, correct))
 
 @app.route('/matches/<match_id>/stats/')
 def matchStats(match_id):

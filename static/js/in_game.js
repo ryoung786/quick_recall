@@ -10,24 +10,41 @@
              var self = this;
 
              $('.avatar').click(function() {
-				 var question = $(this).siblings('.question');
-				 question.toggle();
+                 var question = $(this).siblings('.question');
+                 question.toggle();
              });
 
-			 $('.tags li').click(function() {
-				 $(this).toggleClass('selected');
-			 });
+             $('.tags li').click(function() {
+                 $(this).toggleClass('selected');
+             });
 
-			 $('form').submit(function() {
-				 var form = this;
-				 var tags = $(this).siblings('ul.tags');
-				 var selected = tags.find('.selected');
-				 selected.each(function() {
-					 $(form).append('<input type="hidden" name="tags" value="' + $(this).text() + '">');
-				 });
-				 return true;
-			 });
-         }
+             $('input[type="submit"]').click(function() {
+                 self.submitForm($(this).parent(), $(this).val());
+                 return false;
+             });
+         },
+
+         submitForm : function(form, submit_btn_val) {
+             var data = this.getFormData(form);
+             data.correct = (submit_btn_val == 'Correct') ? 1 : 0;
+             $.post("questions", data, function(resp) {
+                  alert("response: " + resp);
+             });
+             return false;
+         },
+
+         getFormData : function(form) {
+             var tags = $(form).siblings('ul.tags');
+             var selected = tags.find('.selected');
+             var data = {'tags': []}
+             $.each($(form).serializeArray(), function(i, field) {
+                 data[field.name] = field.value;
+             });
+             selected.each(function() {
+                 data.tags = data.tags.concat($(this).text())
+             });
+             return data;
+         },
      };
 
      var match = new Match();

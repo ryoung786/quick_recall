@@ -56,6 +56,9 @@ class Answer(object):
             json['correct'],
             json.get('time_left'))
 
+    def asJSON(self):
+        return vars(self).copy()
+
 
 
 class QuestionFinder(BaseFinder):
