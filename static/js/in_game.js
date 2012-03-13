@@ -1,9 +1,11 @@
 (function($, _) {
-     Game = function() {
+     Match = function() {
+         // TODO keep track of the current question (or lack
+         //      thereof so we can modify the form post action
          this.bindHandlers();
      };
 
-     Game.prototype = {
+     Match.prototype = {
          bindHandlers : function() {
              var self = this;
 
@@ -20,9 +22,7 @@
 				 var form = this;
 				 var tags = $(this).siblings('ul.tags');
 				 var selected = tags.find('.selected');
-				 console.log(selected);
 				 selected.each(function() {
-					 console.log($(this).text());
 					 $(form).append('<input type="hidden" name="tags" value="' + $(this).text() + '">');
 				 });
 				 return true;
@@ -30,5 +30,5 @@
          }
      };
 
-     var game = new Game();
+     var match = new Match();
 }(jQuery, _));
