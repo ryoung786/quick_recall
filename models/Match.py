@@ -44,18 +44,24 @@ class Match(Model):
     def addPlayer(self, team, player):
         pass
 
-    def addQuestion(self, question_or_id):
+    def addQuestion(self, question):
         '''
         Takes a Model.Question or ObjectId, adds it to its questions,
         and saves the match to the database
 
         '''
-        question_id = question_or_id
-        if isinstance(question_or_id, Question):
-            question_id = question_or_id._id
-        self.questions += [question_id]
+        self.questions += [question._id]
+        self.increaseTeamScoreOfPlayer(question)
         self.save()
         return self
+
+    def increaseTeamScoreOfPlayer(self, question):
+        question.player_id
+        for team in self.teams:
+            if question.player_id in team['players']:
+                team['score'] += question.score
+                return
+        raise LookupError("Player id not in match" + question.player_id)
 
     def Teams(self, populate_players=False):
         return [Team.fromJSON(team, populate_players) for team in self.teams]
@@ -65,7 +71,7 @@ class Match(Model):
 
 
 
-class Team(DB):
+class Team(object):
 
     def __init__(self, name, players=[], score=0):
         self.name = name

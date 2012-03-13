@@ -12,8 +12,6 @@ db = conn.foo
 @app.route('/matches/', methods=['POST'])
 def createMatch():
     match_id = Match().save()
-    # watch out, the below url_for doesn't work
-    # TODO figure it out
     return redirect(url_for('match', match_id=str(match_id)))
 
 @app.route('/players/', methods=['POST'])
@@ -34,10 +32,11 @@ def createQuestion(match_id):
     player_id = request.form['player_id']
     correct = 'correct' in request.form
     tags = request.form.getlist('tags')
-    question_id = Question(player_id, correct, tags).save()
+    question = Question(player_id, correct, tags)
+    question.save()
 
     match = MatchFinder().find(match_id)
-    match.addQuestion(question_id)
+    match.addQuestion(question)
     return redirect(url_for('match', match_id=str(match_id)))
 
 @app.route('/matches/<match_id>/stats/')

@@ -6,6 +6,6 @@ from Match import *
 __all__ = [
     "Model", "DB", "BaseFinder",
     "Player", "PlayerFinder",
-    "Question", "QuestionFinder",
+    "Question", "QuestionFinder", "Answer",
     "Match", "MatchFinder", "Team"
 ]
