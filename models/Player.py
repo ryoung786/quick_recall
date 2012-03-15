@@ -1,4 +1,5 @@
 from Model import Model, BaseFinder
+import config
 
 class Player(Model):
     '''
@@ -18,7 +19,14 @@ class Player(Model):
         self._id = _id
 
     def avatar(self):
-        return "http://www.gravatar.com/avatar/%s?d=retro&s=50" % (str(self._id))
+        if config.isEnabled('gravatar'):
+            return "http://www.gravatar.com/avatar/%s?d=retro&s=50" % (str(self._id))
+        else:
+            return ""
+
+    def name(self, full=True):
+        if full: return "%s %s" % (self.first, self.last)
+        else:    return self.first
 
     @staticmethod
     def fromJSON(json):

@@ -11,7 +11,8 @@
                         <div class="player" id="{{ player._id }}">
                             <div class="avatar">
                                 <img src="{{ player.avatar() }}"
-                                     alt="{{ player.first }} {{ player.last }} avatar" />
+                                     title="{{ player.name() }}"
+                                     alt="{{ player.name() }} avatar" />
                                 <p class="name">{{ player.first }} {{ player.last }}</p>
                             </div>
                             <div class="question">

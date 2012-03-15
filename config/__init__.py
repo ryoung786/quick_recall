@@ -1,6 +1,6 @@
 import os
 
 if os.environ.get('QR_ENVIRONMENT') == "PRODUCTION":
-    from production import config
+    from production import *
 else:
-    from development import config
+    from development import *
