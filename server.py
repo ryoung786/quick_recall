@@ -6,8 +6,6 @@ from config import config as cfg
 from models import Match, MatchFinder, Question, QuestionFinder, Answer
 
 app = Flask(__name__)
-conn = Connection(cfg['DB']['host'], cfg['DB']['port'])
-db = conn.foo
 
 @app.route('/matches/', methods=['POST'])
 def createMatch():
@@ -32,13 +30,13 @@ def createQuestion(match_id):
     player_id = request.form['player_id']
     correct = request.form['correct'] == '1'
     tags = request.form.getlist('tags[]')
+
     answer = Answer(player_id, correct)
     question = Question(tags, answers=[answer.asJSON()])
     question.save()
 
     match = MatchFinder().find(match_id)
     match.addQuestionAndAnswer(question, answer)
-    # return redirect(url_for('match', match_id=str(match_id)))
     return "OK " + str(question._id)
 
 @app.route('/matches/<match_id>/questions/<question_id>/answers', methods=['POST'])
