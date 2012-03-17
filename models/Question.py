@@ -24,7 +24,7 @@ class Question(Model):
         self._id = _id
 
     def addAnswer(self, answer):
-        self.answers += [vars(answer)]
+        self.answers += [answer.asJSON()]
         self.save()
         return self
 

@@ -38,7 +38,7 @@ def getTags():
     return tags.keys()
 
 def addQuestion(m):
-    question = Question(getTags())
+    question = Question(getTags(), answers=[]) # why do i have to specify the default?
     question.save()
     buzz = random.randint(0,1) == 1
     if buzz:

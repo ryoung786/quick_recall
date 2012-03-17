@@ -51,7 +51,7 @@ class Match(Model):
 
     def addQuestion(self, question):
         '''
-        Takes a Model.Question or ObjectId, adds it to its questions,
+        Takes a Model.Question, adds it to its questions,
         and saves the match to the database
 
         '''
