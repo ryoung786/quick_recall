@@ -49,6 +49,7 @@ def addQuestion(m):
         correct = random.randint(0,1) == 1
         answer = Answer(player_id, correct)
         question.addAnswer(answer)
+        if correct: m.increaseTeamScoreOfPlayer(player_id, 1)
 
         if (not correct) and (random.randint(0,1) == 1):
             team_index = 1 - team_index
@@ -58,6 +59,7 @@ def addQuestion(m):
             correct = random.randint(0,1) == 1
             answer = Answer(player_id, correct)
             question.addAnswer(answer)
+            if correct: m.increaseTeamScoreOfPlayer(player_id, 1)
     m.addQuestion(question)
 
 
