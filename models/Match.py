@@ -44,6 +44,11 @@ class Match(Model):
     def addPlayer(self, team, player):
         pass
 
+    def addTeam(self, team):
+        self.teams += [team.asJSON()]
+        self.save()
+        return self
+
     def addQuestion(self, question):
         '''
         Takes a Model.Question or ObjectId, adds it to its questions,
@@ -85,6 +90,9 @@ class Team(object):
 
     def Players(self, limit=0, skip=0):
         return PlayerFinder().findMany(self.players)
+
+    def asJSON(self):
+        return vars(self).copy()
 
     @staticmethod
     def fromJSON(json, populate_players=False):
