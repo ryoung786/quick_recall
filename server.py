@@ -50,10 +50,6 @@ def addAnswer(match_id, question_id):
 @app.route('/matches/<match_id>/stats/')
 def matchStats(match_id):
     return controllers.match.Stats().render(match_id)
-    # match = MatchFinder().find(match_id)
-    
-    # return render_template("matches/stats.html",
-    #                        match=match)
 
 @app.route('/')
 def helloWorld():
