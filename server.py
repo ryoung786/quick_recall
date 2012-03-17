@@ -4,6 +4,7 @@ from pymongo.objectid import ObjectId
 from util import *
 from config import config as cfg
 from models import Match, MatchFinder, Question, QuestionFinder, Answer
+import controllers
 
 app = Flask(__name__)
 
@@ -48,9 +49,11 @@ def addAnswer(match_id, question_id):
 
 @app.route('/matches/<match_id>/stats/')
 def matchStats(match_id):
-    match = MatchFinder().find(match_id)
-    return render_template("matches/stats.html",
-                           match=match)
+    return controllers.match.Stats().render(match_id)
+    # match = MatchFinder().find(match_id)
+    
+    # return render_template("matches/stats.html",
+    #                        match=match)
 
 @app.route('/')
 def helloWorld():
