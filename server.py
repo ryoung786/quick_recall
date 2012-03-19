@@ -6,6 +6,7 @@ from config import config as cfg
 from models import Match, MatchFinder, Question, QuestionFinder, Answer
 import controllers
 import f_controllers
+import f_models
 
 app = Flask(__name__)
 
