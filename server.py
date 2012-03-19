@@ -51,6 +51,10 @@ def addAnswer(match_id, question_id):
 def matchStats(match_id):
     return controllers.match.Stats(match_id).render()
 
+@app.route('/players/<player_id>/stats/')
+def playerStats(player_id):
+    return controllers.player.Stats(player_id).render()
+
 @app.route('/')
 def helloWorld():
     return "<a href='matches/4f5ae40867a69c1f6bf97677'>first match</a>"

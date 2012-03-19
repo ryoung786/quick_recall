@@ -66,3 +66,9 @@ class QuestionFinder(BaseFinder):
 
     def toModel(self, json):
         return Question.fromJSON(json)
+
+    def findByPlayerId(self, player_id, limit=0, skip=0):
+        query = {"answers.player_id": ObjectId(player_id)}
+        db = self.getDB()
+        cursor = db[self.collection].find(query).skip(skip).limit(limit)
+        return [self.toModel(json) for json in cursor]
