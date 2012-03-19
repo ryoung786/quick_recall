@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>{{ name }} Stats</title>
+        <link rel="stylesheet" href="/static/css/match/stats.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <div class="content">
+            <h1>Player Stats</h1>
+            <div class="player"
+                 data-num-correct="{{stats[0]['total']}}"
+                 data-num-incorrect="{{stats[1]['total']}}"
+                 data-num-total="{{stats[2]}}"
+                 data-percent-correct="{{stats[3]}}">
+                {{ name }}
+                {{ stats[0]['total'] }} / {{ stats[2] }} ({{ stats[3] }}%)
+                <div class="flot"></div>
+            </div>
+        </div>
+
+        <!-- libraries -->
+        <script type="text/javascript" src="/static/js/lib/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/lib/underscore-min.js"></script>
+        <script type="text/javascript" src="/static/js/lib/jquery.flot.min.js"></script>
+        <script type="text/javascript" src="/static/js/lib/jquery.flot.pie.min.js"></script>
+        <script type="text/javascript" src="/static/js/match/stats.js"></script>
+    </body>
+</html>

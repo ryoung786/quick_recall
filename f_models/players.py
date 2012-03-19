@@ -13,6 +13,9 @@ from pymongo.objectid import ObjectId
 def save(player, db):
     return db.players.save(player)
 
+def find(player_id, db):
+    return db.players.find_one({"_id": ObjectId(player_id)})
+
 def avatar(player_id):
     if config.isEnabled('gravatar'):
         return "http://www.gravatar.com/avatar/%s?d=retro&s=50" % (str(player_id))

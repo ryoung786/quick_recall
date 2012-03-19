@@ -55,7 +55,7 @@ def matchStats(match_id):
 
 @app.route('/players/<player_id>/stats/')
 def playerStats(player_id):
-    return controllers.player.Stats(player_id).render()
+    return f_controllers.players.stats.render(player_id)
 
 @app.route('/')
 def helloWorld():
