@@ -1,0 +1,14 @@
+
+
+* {
+    font-family: helvetica;
+    color: #333;
+    margin: 0px;
+    padding: 0px;
+}
+
+.flot {
+    display: none;
+    width: 300px;
+    height: 150px;
+}

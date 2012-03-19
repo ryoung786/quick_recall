@@ -49,7 +49,7 @@ def addAnswer(match_id, question_id):
 
 @app.route('/matches/<match_id>/stats/')
 def matchStats(match_id):
-    return controllers.match.Stats().render(match_id)
+    return controllers.match.Stats(match_id).render()
 
 @app.route('/')
 def helloWorld():

@@ -28,6 +28,25 @@ class Player(Model):
         if full: return "%s %s" % (self.first, self.last)
         else:    return self.first
 
+    # for a player, return (num_correct, num_incorrect, percent_correct)
+    def correctCountForMatch(self, match):
+        qs = match.Questions()
+        correct = {'total': 0}
+        incorrect = {'total': 0}
+        for q in qs:
+            for a in q.Answers():
+                if a.player_id != self._id: continue
+                d = incorrect
+                if a.correct: d = correct
+                d['total'] += 1
+                for tag in q.tags:
+                    val = d.get(tag, 0)
+                    d[tag] = val + 1
+        total = correct['total'] + incorrect['total']
+        percent = 100 * correct['total'] / (total)
+        return (correct, incorrect, total, percent)
+
+
     @staticmethod
     def fromJSON(json):
         return Player(
