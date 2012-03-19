@@ -5,6 +5,7 @@ from util import *
 from config import config as cfg
 from models import Match, MatchFinder, Question, QuestionFinder, Answer
 import controllers
+import f_controllers
 
 app = Flask(__name__)
 
@@ -49,7 +50,7 @@ def addAnswer(match_id, question_id):
 
 @app.route('/matches/<match_id>/stats/')
 def matchStats(match_id):
-    return controllers.match.Stats(match_id).render()
+    return f_controllers.match.stats.render(match_id)
 
 @app.route('/players/<player_id>/stats/')
 def playerStats(player_id):
