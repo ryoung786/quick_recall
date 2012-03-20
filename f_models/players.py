@@ -36,8 +36,7 @@ def statsForQuestions(player_id, questions):
     for q in questions:
         for a in q['answers']:
             if a['player_id'] != ObjectId(player_id): continue
-            d = incorrect
-            if a['correct']: d = correct
+            d = correct if a['correct'] else incorrect
             d['total'] += 1
             for tag in q['tags']:
                 val = d.get(tag, 0)
