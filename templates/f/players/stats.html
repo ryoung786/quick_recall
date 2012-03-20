@@ -7,12 +7,12 @@
         <div class="content">
             <h1>Player Stats</h1>
             <div class="player"
-                 data-num-correct="{{ stats.correct['total'] }}"
-                 data-num-incorrect="{{ stats.incorrect['total'] }}"
+                 data-num-correct="{{ stats.correct.total }}"
+                 data-num-incorrect="{{ stats.incorrect.total }}"
                  data-num-total="{{ stats.total }}"
                  data-percent-correct="{{ stats.percent }}">
                 {{ name }}
-                {{ stats.correct['total'] }} / {{ stats.total }} ({{ stats.percent }}%)
+                {{ stats.correct.total }} / {{ stats.total }} ({{ stats.percent }}%)
                 <div class="flot"></div>
             </div>
         </div>
