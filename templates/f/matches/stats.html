@@ -6,20 +6,21 @@
     <body>
         <div class="content">
             <h1>Match Stats</h1>
-            {% for team in match.Teams() %}
+            {% for team in match.teams %}
                 <div class="team">
-                    <p>{{ team.name }}: {{team.score}}</p>
+                    <p>{{ team.name }}: {{ team.score }}</p>
                     <div class="players">
-                        {% for player in team.Players() %}
-                            {% set name = player.name() %}
-                            {% set stats = player.correctCountForMatch(match) %}
+                        {% for player_stats in team.players %}
+                            {% set player = player_stats.player %}
+                            {% set stats = player_stats.stats %}
+                            {% set name = player.first + ' ' + player.last %}
                             <div class="player"
-                                 data-num-correct="{{stats[0]['total']}}"
-                                 data-num-incorrect="{{stats[1]['total']}}"
-                                 data-num-total="{{stats[2]}}"
-                                 data-percent-correct="{{stats[3]}}">
+                                 data-num-correct="{{ stats.correct.total }}"
+                                 data-num-incorrect="{{ stats.incorrect.total }}"
+                                 data-num-total="{{ stats.total }}"
+                                 data-percent-correct="{{ stats.percent }}">
                                 {{ name }}
-                                {{ stats[0]['total'] }} / {{ stats[2] }} ({{ stats[3] }}%)
+                                {{ stats.correct['total'] }} / {{ stats.total }} ({{ stats.percent }}%)
                                 <div class="flot"></div>
                             </div>
                         {% endfor %}

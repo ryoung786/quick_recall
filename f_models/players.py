@@ -1,5 +1,6 @@
 import config
 from pymongo.objectid import ObjectId
+from collections import namedtuple
 
 '''
 {
@@ -15,6 +16,9 @@ def save(player, db):
 
 def find(player_id, db):
     return db.players.find_one({"_id": ObjectId(player_id)})
+
+def findMany(player_ids, db):
+    return db.players.find({"_id": {"$in": player_ids}})
 
 def avatar(player_id):
     if config.isEnabled('gravatar'):
@@ -42,10 +46,14 @@ def statsForQuestions(player_id, questions):
     percent = 0
     if total > 0:
         percent = 100 * correct['total'] / (total)
-    return (correct, incorrect, total, percent)
+    Stats = namedtuple('Stats', 'correct incorrect total percent')
+    return Stats(correct, incorrect, total, percent)
 
 def statsForMatchId(player_id, match_id, db):
     match = db.matches.find_one({"_id": ObjectId(match_id)}, {'questions': 1})
+    return statsForMatch(player_id, match, db)
+
+def statsForMatch(player_id, match, db):
     question_ids = match['questions']
     questions = db.questions.find({"_id": {"$in": question_ids}})
     return statsForQuestions(player_id, questions)
