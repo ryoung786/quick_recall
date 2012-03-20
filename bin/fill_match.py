@@ -7,6 +7,7 @@ _root_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.insert(0, _root_dir)
 
 from models import *
+from pymongo.objectid import ObjectId
 
 # if (len(sys.argv) < 3):
 #     print "Usage:" + sys.argv[0] + " first_name last_name"
@@ -14,12 +15,12 @@ from models import *
 
 
 players = [
-    ["4f559ed5a174fb1b5d978ddb", # young
-     "4f5ae1cd67a69c1f6bf97676", # taber
-     "4f5d1a9e161d151563000001"  # katherine
+    [ObjectId("4f559ed5a174fb1b5d978ddb"), # young
+     ObjectId("4f5ae1cd67a69c1f6bf97676"), # taber
+     ObjectId("4f5d1a9e161d151563000001")  # katherine
      ],
-    ["4f5d86dd161d153ff4000000", # wes
-     "4f61eed751ad6e44112c4cc2"  # jake
+    [ObjectId("4f5d86dd161d153ff4000000"), # wes
+     ObjectId("4f61eed751ad6e44112c4cc2")  # jake
      ]
 ]
 
