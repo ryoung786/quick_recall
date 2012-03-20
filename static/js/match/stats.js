@@ -12,12 +12,12 @@
 
          this.tags_options = {
              series: {
-                 stack: true,
                  bars: {
                      show: true,
-                     barWidth: 10,
+                     barWidth: 20,
                      align: 'center'
-                 }
+                 },
+                 stack: true
              },
              xaxis: {
                  ticks: [[100, 'math'], [200, 'history'], [300, 'science']],

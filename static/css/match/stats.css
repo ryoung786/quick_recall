@@ -6,7 +6,7 @@
 }
 
 .flot {
-    /* display: none; */
+    display: inline-block;
     width: 300px;
     height: 150px;
 }
@@ -14,3 +14,10 @@
 .tag-data {
     display: none;
 }
+
+.player {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+    .player h3 {
+    }

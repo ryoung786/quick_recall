@@ -19,9 +19,27 @@
                                  data-num-incorrect="{{ stats.incorrect.total }}"
                                  data-num-total="{{ stats.total }}"
                                  data-percent-correct="{{ stats.percent }}">
-                                {{ name }}
-                                {{ stats.correct['total'] }} / {{ stats.total }} ({{ stats.percent }}%)
-                                <div class="flot"></div>
+                                <h3>
+                                    <span class="name">{{ name }}</span>
+                                    <span class="stats">
+                                        {{ stats.correct['total'] }} / {{ stats.total }} ({{ stats.percent }}%)
+                                    </span>
+                                </h3>
+                                <div class="flot pie"></div>
+                                <div class="flot tags"></div>
+
+                                <table class="tag-data">
+                                    <tr class="correct">
+                                        <td class="name" data-tagname="math" data-xval="100">5</td>
+                                        <td class="name" data-tagname="history" data-xval="200">3</td>
+                                        <td class="name" data-tagname="science" data-xval="300">2</td>
+                                    </tr>
+                                    <tr class="incorrect">
+                                        <td class="name" data-tagname="math" data-xval="100">1</td>
+                                        <td class="name" data-tagname="history" data-xval="200">8</td>
+                                        <td class="name" data-tagname="science" data-xval="300">5</td>
+                                    </tr>
+                                </table>
                             </div>
                         {% endfor %}
                     </div>
@@ -38,6 +56,7 @@
         <script type="text/javascript" src="/static/js/lib/underscore-min.js"></script>
         <script type="text/javascript" src="/static/js/lib/jquery.flot.min.js"></script>
         <script type="text/javascript" src="/static/js/lib/jquery.flot.pie.min.js"></script>
+        <script type="text/javascript" src="/static/js/lib/jquery.flot.stack.min.js"></script>
         <script type="text/javascript" src="/static/js/match/stats.js"></script>
     </body>
 </html>
