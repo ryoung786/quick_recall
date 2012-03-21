@@ -46,13 +46,13 @@
              var self = this;
              $('.player').each(function() {
                  var correct = [];
-                 $('.correct td').each(function() {
+                 $('.correct td', this).each(function() {
                      var x = parseInt($(this).data('xval'));
                      var y = parseInt($(this).text());
                      correct.push([x, y]);
                  });
                  var incorrect = [];
-                 $('.incorrect td').each(function() {
+                 $('.incorrect td', this).each(function() {
                      var x = parseInt($(this).data('xval'));
                      var y = parseInt($(this).text());
                      incorrect.push([x, y]);
