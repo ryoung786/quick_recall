@@ -31,12 +31,12 @@
                                 <table class="tag-data">
                                     <tr class="correct">
                                         {% for tag, num_correct in tag_stats[player._id].correct.iteritems() %}
-                                            <td class="name" data-tagname="{{ tag }}" data-xval="{{ tag_to_x_map[player._id][tag] }}">{{ num_correct }}</td>
+                                            <td data-xval="{{ tag_to_x_map[player._id][tag] }}">{{ num_correct }}</td>
                                         {% endfor %}
                                     </tr>
                                     <tr class="incorrect">
                                         {% for tag, num_incorrect in tag_stats[player._id].incorrect.iteritems() %}
-                                            <td class="name" data-tagname="{{ tag }}" data-xval="{{ tag_to_x_map[player._id][tag] }}">{{ num_incorrect }}</td>
+                                            <td data-xval="{{ tag_to_x_map[player._id][tag] }}">{{ num_incorrect }}</td>
                                         {% endfor %}
                                     </tr>
                                 </table>
@@ -62,7 +62,6 @@
         <script type="text/javascript" src="/static/js/lib/underscore-min.js"></script>
         <script type="text/javascript" src="/static/js/lib/jquery.flot.min.js"></script>
         <script type="text/javascript" src="/static/js/lib/jquery.flot.pie.min.js"></script>
-        <script type="text/javascript" src="/static/js/lib/jquery.flot.stack.min.js"></script>
         <script type="text/javascript" src="/static/js/match/stats.js"></script>
     </body>
 </html>

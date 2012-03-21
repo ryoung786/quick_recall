@@ -40,12 +40,12 @@
              var self = this;
              $('.player').each(function() {
                  var correct = $('.correct td', this).map(function() {
-                     var x = parseInt($(this).data('xval'));
+                     var x = parseInt($(this).data('xval')) - 15;
                      var y = parseInt($(this).text());
                      return [[x, y]];
                  });
                  var incorrect = $('.incorrect td', this).map(function() {
-                     var x = parseInt($(this).data('xval'));
+                     var x = parseInt($(this).data('xval')) + 15;
                      var y = parseInt($(this).text());
                      return [[x, y]];
                  });
@@ -59,7 +59,7 @@
                      return [[xtick, tag]];
                  });
 
-                 self.tags_options['xaxis']['ticks'] = xticks;
+                 self.tags_options['xaxis'] = {'ticks': xticks, 'min': 75, 'max': xticks.length*100 + 25};
                  $.plot($('.flot.tags', this), data, self.tags_options);
              });
          }
