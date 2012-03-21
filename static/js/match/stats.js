@@ -20,7 +20,7 @@
                  stack: true
              },
              xaxis: {
-                 ticks: [[100, 'math'], [200, 'history'], [300, 'science']],
+                 // ticks: [[100, 'math'], [200, 'history'], [300, 'science']],
                  min: 50,
                  max: 350
              }
@@ -45,21 +45,28 @@
          drawTagsBreakdown : function() {
              var self = this;
              $('.player').each(function() {
-                 var correct = [];
-                 $('.correct td', this).each(function() {
+                 var correct = $('.correct td', this).map(function() {
                      var x = parseInt($(this).data('xval'));
                      var y = parseInt($(this).text());
-                     correct.push([x, y]);
+                     return [[x, y]];
                  });
-                 var incorrect = [];
-                 $('.incorrect td', this).each(function() {
+                 var incorrect = $('.incorrect td', this).map(function() {
                      var x = parseInt($(this).data('xval'));
                      var y = parseInt($(this).text());
-                     incorrect.push([x, y]);
+                     return [[x, y]];
                  });
 
                  var data = [{ label: "Correct", data: correct },
                              { label: "Incorrect", data: incorrect }];
+                 console.log(data)
+
+                 var xticks = $('.tag-to-xtick-mapping li', this).map(function() {
+                     var xtick = parseInt($(this).text());
+                     var tag = $(this).data('tagname');
+                     return [[xtick, tag]];
+                 });
+
+                 self.tags_options['xaxis']['ticks'] = xticks;
                  $.plot($('.flot.tags', this), data, self.tags_options);
              });
          }

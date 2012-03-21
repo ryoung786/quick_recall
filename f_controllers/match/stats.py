@@ -21,8 +21,33 @@ def render(match_id):
     match = f_models.matches.find(match_id, db)
 
     PlayerStats = namedtuple('PlayerStats', 'player stats')
+    tag_stats = {}
     for team in match['teams']:
+        # for p_id in team['players']:
+        #     tag_stats[p_id] = matchStats(p_id, match, db)
         team['players'] = [PlayerStats(p, matchStats(p['_id'], match, db))
                            for p in f_models.players.findMany(team['players'], db)]
+
+
+    tag_stats = {
+        'correct': {
+            'math' : 5,
+            'history' : 3,
+            'science' : 2
+        },
+        'incorrect': {
+            'math' : 1,
+            'history' : 8,
+            'science' : 5
+        },
+    }
+    tag_to_x_map = {
+        'math': 100,
+        'history': 200,
+        'science': 300
+    }
+    print match['teams'][0]['players'][0].stats.correct
     return render_template("f/matches/stats.html",
-                           match=match)
+                           match=match,
+                           tag_stats=tag_stats,
+                           tag_to_x_map=tag_to_x_map)

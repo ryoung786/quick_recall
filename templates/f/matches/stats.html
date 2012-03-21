@@ -30,16 +30,22 @@
 
                                 <table class="tag-data">
                                     <tr class="correct">
-                                        <td class="name" data-tagname="math" data-xval="100">5</td>
-                                        <td class="name" data-tagname="history" data-xval="200">3</td>
-                                        <td class="name" data-tagname="science" data-xval="300">2</td>
+                                        {% for tag, num_correct in tag_stats.correct.iteritems() %}
+                                            <td class="name" data-tagname="{{ tag }}" data-xval="{{ tag_to_x_map[tag] }}">{{ num_correct }}</td>
+                                        {% endfor %}
                                     </tr>
                                     <tr class="incorrect">
-                                        <td class="name" data-tagname="math" data-xval="100">1</td>
-                                        <td class="name" data-tagname="history" data-xval="200">8</td>
-                                        <td class="name" data-tagname="science" data-xval="300">5</td>
+                                        {% for tag, num_incorrect in tag_stats.incorrect.iteritems() %}
+                                            <td class="name" data-tagname="{{ tag }}" data-xval="{{ tag_to_x_map[tag] }}">{{ num_incorrect }}</td>
+                                        {% endfor %}
                                     </tr>
                                 </table>
+
+                                <ul class="tag-to-xtick-mapping">
+                                    {% for tag, xtick in tag_to_x_map.iteritems() %}
+                                    <li data-tagname="{{ tag }}">{{ xtick }}</li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         {% endfor %}
                     </div>

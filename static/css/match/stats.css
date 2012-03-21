@@ -11,7 +11,7 @@
     height: 150px;
 }
 
-.tag-data {
+.tag-data, .tag-to-xtick-mapping {
     display: none;
 }
 
@@ -19,5 +19,3 @@
     padding-left: 10px;
     padding-bottom: 10px;
 }
-    .player h3 {
-    }
