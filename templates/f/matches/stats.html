@@ -30,20 +30,20 @@
 
                                 <table class="tag-data">
                                     <tr class="correct">
-                                        {% for tag, num_correct in tag_stats.correct.iteritems() %}
-                                            <td class="name" data-tagname="{{ tag }}" data-xval="{{ tag_to_x_map[tag] }}">{{ num_correct }}</td>
+                                        {% for tag, num_correct in tag_stats[player._id].correct.iteritems() %}
+                                            <td class="name" data-tagname="{{ tag }}" data-xval="{{ tag_to_x_map[player._id][tag] }}">{{ num_correct }}</td>
                                         {% endfor %}
                                     </tr>
                                     <tr class="incorrect">
-                                        {% for tag, num_incorrect in tag_stats.incorrect.iteritems() %}
-                                            <td class="name" data-tagname="{{ tag }}" data-xval="{{ tag_to_x_map[tag] }}">{{ num_incorrect }}</td>
+                                        {% for tag, num_incorrect in tag_stats[player._id].incorrect.iteritems() %}
+                                            <td class="name" data-tagname="{{ tag }}" data-xval="{{ tag_to_x_map[player._id][tag] }}">{{ num_incorrect }}</td>
                                         {% endfor %}
                                     </tr>
                                 </table>
 
                                 <ul class="tag-to-xtick-mapping">
-                                    {% for tag, xtick in tag_to_x_map.iteritems() %}
-                                    <li data-tagname="{{ tag }}">{{ xtick }}</li>
+                                    {% for tag, xtick in tag_to_x_map[player._id].iteritems() %}
+                                        <li data-tagname="{{ tag }}">{{ xtick }}</li>
                                     {% endfor %}
                                 </ul>
                             </div>

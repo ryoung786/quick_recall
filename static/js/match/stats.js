@@ -4,10 +4,8 @@
              series: {
                  pie: {
                      show: true,
-                     // innerRadius: .2
                  }
              },
-             // legend: { show: false }
          };
 
          this.tags_options = {
@@ -19,11 +17,7 @@
                  },
                  stack: true
              },
-             xaxis: {
-                 // ticks: [[100, 'math'], [200, 'history'], [300, 'science']],
-                 min: 50,
-                 max: 350
-             }
+             xaxis: {}
          };
 
          this.drawPlayerCorrectIncorrect();
@@ -58,7 +52,6 @@
 
                  var data = [{ label: "Correct", data: correct },
                              { label: "Incorrect", data: incorrect }];
-                 console.log(data)
 
                  var xticks = $('.tag-to-xtick-mapping li', this).map(function() {
                      var xtick = parseInt($(this).text());
