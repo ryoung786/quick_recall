@@ -19,6 +19,12 @@ def render(player_id):
 
     name = f_models.players.name(player)
     stats = f_models.players.statsForAllTime(player_id, db)
+    tagset = set(stats.correct.keys() + stats.incorrect.keys())
+    tagset.remove('total')
+    tag_to_x = {}
+    for i,tag in enumerate(tagset):
+        tag_to_x[tag] = (1+i)*100
     return render_template("f/players/stats.html",
                            stats=stats,
-                           name=name)
+                           name=name,
+                           tag_to_x_map=tag_to_x)

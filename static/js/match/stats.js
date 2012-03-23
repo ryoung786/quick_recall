@@ -4,6 +4,7 @@
              series: {
                  pie: {
                      show: true,
+                     innerradius: .2
                  }
              },
          };
@@ -31,8 +32,8 @@
                  var num_correct = $(this).data('num-correct');
                  var num_incorrect = $(this).data('num-incorrect');
 
-                 var data = [{ label: "Correct", data: num_correct },
-                             { label: "Incorrect", data: num_incorrect }];
+                 var data = [{ label: "Correct",   color: "#AFD8F8", data: num_correct },
+                             { label: "Incorrect", color: "#CB4B4B",    data: num_incorrect }];
                  $.plot($('.flot.pie', this), data, self.pie_options);
              });
          },
@@ -50,8 +51,8 @@
                      return [[x, y]];
                  });
 
-                 var data = [{ label: "Correct", data: correct },
-                             { label: "Incorrect", data: incorrect }];
+                 var data = [{ label: "Correct",   color: "#AFD8F8", data: correct },
+                             { label: "Incorrect", color: "#CB4B4B",    data: incorrect }];
 
                  var xticks = $('.tag-to-xtick-mapping li', this).map(function() {
                      var xtick = parseInt($(this).text());
