@@ -23,3 +23,11 @@
     padding-left: 10px;
     padding-bottom: 10px;
 }
+
+.flot.tags .xAxis .ticklabel {
+    font-size: 10px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    margin-top: 8px;
+}
