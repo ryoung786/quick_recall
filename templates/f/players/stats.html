@@ -16,7 +16,7 @@
                 <div class="flot pie"></div>
                 <div class="flot tags"></div>
 
-                <table class="tag-data">
+                <table class="tag-data data-table">
                     <tr class="correct">
                         {% for tag, num_correct in stats.correct.iteritems() %}
                         <td data-xval="{{ tag_to_x_map[tag] }}">{{ num_correct }}</td>
@@ -29,7 +29,7 @@
                     </tr>
                 </table>
 
-                <ul class="tag-to-xtick-mapping">
+                <ul class="tag-to-xtick-mapping data-table">
                     {% for tag, xtick in tag_to_x_map.iteritems() %}
                     <li data-tagname="{{ tag }}">{{ xtick }}</li>
                     {% endfor %}

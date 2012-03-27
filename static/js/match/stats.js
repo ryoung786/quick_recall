@@ -23,6 +23,7 @@
 
          this.drawPlayerCorrectIncorrect();
          this.drawTagsBreakdown();
+         this.drawScoreHistory();
      };
 
      Stats.prototype = {
@@ -37,6 +38,7 @@
                  $.plot($('.flot.pie', this), data, self.pie_options);
              });
          },
+
          drawTagsBreakdown : function() {
              var self = this;
              $('.player').each(function() {
@@ -63,6 +65,20 @@
                  self.tags_options['xaxis'] = {'ticks': xticks, 'min': 75, 'max': xticks.length*100 + 25};
                  $.plot($('.flot.tags', this), data, self.tags_options);
              });
+         },
+
+         drawScoreHistory : function() {
+             var self = this;
+             var data = $("#score-history-data tr").map(function() {
+                 return {
+                     label: $(this).data('name'),
+                     data : $('td', this).map(function(i) {
+                         return [[i, parseInt($(this).text())]];
+                     }).get()
+                 };
+             });
+             console.log(data);
+             $.plot($('.flot.score-history-graph'), data);
          }
      };
      var stats = new Stats();

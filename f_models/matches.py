@@ -42,10 +42,6 @@ def playerToTeamDict(match_or_id, db):
             players[player_id] = i
     return players
 
-def scoreTracker(match_id, db):
-    match = find(match_id, db)
-    questions = db.questions.find({"_id": {"$in": match['questions']}})
-
 def addQuestion(match_or_id, question, db):
     m = matchOrId(match_or_id, db)
     m['questions'] += [question["_id"]]

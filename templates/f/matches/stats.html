@@ -6,6 +6,22 @@
     <body>
         <div class="content">
             <h1>Match Stats</h1>
+            <div class="stats">
+                <p><span>Number of questions:</span>{{ match.questions | count }}</p>
+            </div>
+            <div class="score-history">
+                <table id="score-history-data" class="data-table">
+                    {% for team in match.teams %}
+                        <tr data-name="{{ team.name }}">
+                            {% for score in team.score_history %}
+                                <td>{{ score }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <div class="flot score-history-graph"></div>
+            </div>
+
             {% for team in match.teams %}
                 <div class="team">
                     <p>{{ team.name }}: {{ team.score }}</p>
@@ -28,7 +44,7 @@
                                 <div class="flot pie"></div>
                                 <div class="flot tags"></div>
 
-                                <table class="tag-data">
+                                <table class="tag-data data-table">
                                     <tr class="correct">
                                         {% for tag, num_correct in tag_stats[player._id].correct.iteritems() %}
                                             <td data-xval="{{ tag_to_x_map[player._id][tag] }}">{{ num_correct }}</td>
@@ -41,7 +57,7 @@
                                     </tr>
                                 </table>
 
-                                <ul class="tag-to-xtick-mapping">
+                                <ul class="tag-to-xtick-mapping data-table">
                                     {% for tag, xtick in tag_to_x_map[player._id].iteritems() %}
                                         <li data-tagname="{{ tag }}">{{ xtick }}</li>
                                     {% endfor %}
@@ -51,10 +67,6 @@
                     </div>
                 </div>
             {% endfor %}
-
-            <div class="stats">
-                <p><span>Number of questions:</span>{{ match.questions | count }}
-            </div>
         </div>
 
         <!-- libraries -->

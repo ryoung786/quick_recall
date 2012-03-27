@@ -11,7 +11,11 @@
     height: 150px;
 }
 
-.tag-data, .tag-to-xtick-mapping {
+.flot.score-history-graph {
+    width: 650px;
+}
+
+.data-table {
     display: none;
 }
 

@@ -26,11 +26,11 @@ players = [
      ]
 ]
 
-teams = [{'name': 'A',
+teams = [{'name': 'DCHS',
           'players': players[0],
           'score': 0,
           'score_history': []},
-         {'name': 'B',
+         {'name': 'Apollo',
           'players': players[1],
           'score': 0,
           'score_history': []}]
