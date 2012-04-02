@@ -59,10 +59,6 @@ wasCorrect = buzz
 def addAnswer(m, question, was_correct, team_that_buzzed):
     player_id_that_buzzed = randomPlayerOnTeam(team_that_buzzed)
     score = question["score"] if was_correct else 0
-    if was_correct:
-        print "team %s buzzed, it was correct;   score: %s" % (team_that_buzzed, score)
-    else:
-        print "team %s buzzed, it was INcorrect; score: %s" % (team_that_buzzed, score)
     m["teams"][team_that_buzzed]["score"] += score
     m["teams"][team_that_buzzed]["score_history"][-1] = \
         m["teams"][team_that_buzzed]["score"]
@@ -91,9 +87,6 @@ def populateMatch():
     m_id = db.matches.save(m)
     for i in range(400):
         addQuestion(m)
-        if m['teams'][0]['score'] != m['teams'][0]['score_history'][-1] or \
-                m['teams'][1]['score'] != m['teams'][1]['score_history'][-1]:
-            print "wtf: " + i
         
     db.matches.save(m)
     return m
@@ -101,5 +94,4 @@ def populateMatch():
 if __name__ == '__main__':
     from pprint import pprint
     m = populateMatch()
-    pprint(m)
     print "http://localhost:5000/matches/%s/stats" % m["_id"]

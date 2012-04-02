@@ -1,10 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 from pymongo import Connection
-from pymongo.objectid import ObjectId
-from util import *
 from config import config as cfg
 from models import Match, MatchFinder, Question, QuestionFinder, Answer
-import controllers
 import f_controllers
 import f_models
 
