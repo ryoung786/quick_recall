@@ -7,6 +7,14 @@ import f_models
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET'])
+def welcome():
+    return render_template('welcome.html')
+
+@app.route('/matches/new', methods=['GET'])
+def newMatch():
+    return render_template('matches/new.html')
+
 @app.route('/matches/', methods=['POST'])
 def createMatch():
     match_id = Match().save()
@@ -54,9 +62,9 @@ def matchStats(match_id):
 def playerStats(player_id):
     return f_controllers.players.stats.render(player_id)
 
-@app.route('/')
-def helloWorld():
-    return "<a href='matches/4f5ae40867a69c1f6bf97677'>first match</a>"
+# @app.route('/')
+# def helloWorld():
+#     return "<a href='matches/4f5ae40867a69c1f6bf97677'>first match</a>"
 
 
 
